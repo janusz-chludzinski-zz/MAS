@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>mas</name>
-	<description>Demo project for Spring Boot</description>
+	<description>MAS Spring Boot Project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -51,6 +51,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+			<version>1.9.21</version>
 		</dependency>
 	</dependencies>
 
