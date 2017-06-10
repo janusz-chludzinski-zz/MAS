@@ -6,9 +6,9 @@ import javax.persistence.Table;
 /**
  * Created by Janusz on 07.06.2017.
  */
-@Entity
-@Table(name = "Boss")
-public class Boss extends Person {
-
-    private double bonus;
-}
+//@Entity
+//@Table(name = "Boss")
+//public class Boss extends User {
+//
+//    private double bonus;
+//}

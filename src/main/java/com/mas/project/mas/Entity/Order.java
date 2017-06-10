@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by Janusz on 07.06.2017.
  */
 @Entity
-@Table(name = "Order")
+@Table(name = "ORDERS")
 public class Order {
 
     @Id
@@ -29,13 +29,14 @@ public class Order {
     @Column(name = "DATE_TO")
     private Date dateTo;
 
-    @Column
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Mechanic")
     private Mechanic mechanic;
 
     @Column(name = "ORDER_NUMBER")
     private Long orderNumber;
 
-    Set<Service> serviceSet;
+//    Set<Service> serviceSet;
 
 
 

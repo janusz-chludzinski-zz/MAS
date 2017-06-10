@@ -8,7 +8,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Clients")
-public class Client extends Person {
+public class Client extends User {
 
     private Long clientNumber;
 }
