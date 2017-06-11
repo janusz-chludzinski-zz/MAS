@@ -2,6 +2,8 @@ package com.mas.project.mas.Controller;
 
 import com.mas.project.mas.Entity.User;
 import com.mas.project.mas.Service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,21 +22,41 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView home(){
+    private static final Logger logger = LogManager.getLogger(LoginController.class);
+
+
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    public ModelAndView log(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    public ModelAndView home(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value={"/zyziek"}, method = RequestMethod.GET)
+    public ModelAndView zyziek(){
+        logger.debug("....home method start");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("zyziek");
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/app/home", method = RequestMethod.GET)
+    @RequestMapping(value ={"/login"}, method = RequestMethod.POST)
     public ModelAndView login() {
+        logger.debug("....login method start");
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("app/home");
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 

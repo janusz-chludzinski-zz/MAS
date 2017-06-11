@@ -30,29 +30,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Value("${spring.queries.users-query}")
     private String usersQuery;
 
+    @Value("${spring.queries.users-query}")
+    private String rolesQuery;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+                .usersByUsernameQuery(usersQuery)
+                .authoritiesByUsernameQuery(rolesQuery);
+//                .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/app/**").hasRole("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/app/home")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
+        http
+                .authorizeRequests()
+                    .antMatchers("/login").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    .loginPage("/login").failureUrl("/login?error=true")
+                    .defaultSuccessUrl("/home")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .permitAll();
+
+
     }
 
     @Override
