@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="basic_template :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<aside th:replace="basic_template :: navigation"></aside>
 <h1>Dupa zbita!</h1>
 <div th:replace = "basic_template :: logout"></div>
 </body>

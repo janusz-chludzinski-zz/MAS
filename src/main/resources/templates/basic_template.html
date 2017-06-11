@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:fragment="head">
+    <title>MAS APP</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<aside th:fragment="navigation" class="side-nav">
+    <nav>
+        <ul>
+            <li>Lista zamowień</li>
+            <li>Dodaj zamówienie</li>
+            <li>Raporty</li>
+        </ul>
+    </nav>
+</aside>
 
 <a th:fragment="logout" th:href="@{/logout}">Logout</a>
 
