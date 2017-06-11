@@ -1,5 +1,6 @@
 .side-nav {
     border: 1px solid red;
+    float: left;
 }
 
 button {

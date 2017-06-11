@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="basic_template :: head">
+</head>
+<body>
+    <aside th:replace="basic_template :: navigation"></aside>
+    <h1>Nowe zamówienie</h1>
+
+    <form action="" th:action="@{/order/new}" method="post" th:object="${orderCollector}">
+        <fieldset>
+            <h2>Informacje o aucie</h2>
+
+            <label for="brand">Marka</label>
+            <input type="text" name="brand" id="brand">
+
+            <label for="model">Model</label>
+            <input type="text" name="model" id="model">
+
+            <label for="registration">Numer rejestracyjny</label>
+            <input type="text" name="registration" id="registration">
+
+            <label for="engineType">Typ silnika</label>
+            <input type="text" name="engineType" id="engineType">
+
+            <label for="prodYear">Rok produkcji</label>
+            <input type="text" name="prodYear" id="prodYear">
+
+            <label for="extraInfo">Informacje dodatkowe</label>
+            <textarea name="extraInfo" id="extraInfo"></textarea>
+        </fieldset>
+        
+        <fieldset>
+            <h2>Informacje o właścicielu</h2>
+
+            <label for="firstName">Imię</label>
+            <input type="text" name="firstName" id="firstName">
+
+            <label for="lastName">Nazwisko</label>
+            <input type="text" name="lastName" id="lastName">
+
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email">
+
+            <label for="phone">Telefon</label>
+            <input type="text" name="phone" id="phone">
+
+            <!--<label for="firstname">Marka</label>-->
+            <!--<input type="text" name="firstname" id="firstname">-->
+        </fieldset>
+        
+        <fieldset>
+            <h2>Usługi wykupione do zamówienia</h2>
+
+            <input type="checkbox" name="breaks" value="">
+            <input type="checkbox" name="electrics" value="">
+            <input type="checkbox" name="body" value="">
+            <input type="checkbox" name="engine" value="">
+            <input type="checkbox" name="fluids" value="">
+            <label for="total">Suma</label>
+            <input type="text" name="total" id="total">
+        </fieldset>
+        
+        <fieldset>
+            <h2>Mechanik przypisany do zamówienia</h2>
+
+            <label for="mechanic"></label>
+            <select id="mechanic" name="mechanic" >
+                <option th:each="mechanic : ${mechanics}" th:value="${mechanic.email}" th:text="${mechanic.email}">Dupa</option>
+            </select>
+        </fieldset>
+
+        <a th:href="@{/home}">Anuluj</a>
+        <button th:type="submit">Zarejestruj zamówienie</button>
+    </form>
+
+
+</body>
+</html>
