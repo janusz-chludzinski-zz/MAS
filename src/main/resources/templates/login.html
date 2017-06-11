@@ -19,6 +19,7 @@
 
         <button name="Submit" value="Login" type="Submit" th:text="Login"></button>
     </form>
-    <div th:if="${param.error}">Test</div>
+    <div th:if="${param.error}">Blad logowanie, podane parametry nie sa prawidlowe</div>
+    <div th:if="${param.logout}">Zostales pomyslnie wylogowany, zaloguj sie ponownie</div>
 </body>
 </html>
