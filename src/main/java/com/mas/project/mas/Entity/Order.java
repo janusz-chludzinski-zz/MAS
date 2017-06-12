@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 import com.mas.project.mas.ENUM.Status;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by Janusz on 07.06.2017.
@@ -23,27 +23,26 @@ public class Order {
     @Column(name = "TOTAL_COST")
     private Double totalCost;
 
-    @Column(name = "DATE_FROM")
-    private Date dateFrom;
-
-    @Column(name = "DATE_TO")
-    private Date dateTo;
+    @Column(name = "REGISTRATION_DATE")
+    private Date registrationDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Mechanic")
     private Mechanic mechanic;
 
     @Column(name = "ORDER_NUMBER")
-    private Long orderNumber;
+    private String orderNumber;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID")
     private Car car;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID")
     private Client client;
 
+    @OneToMany(targetEntity = Service.class, mappedBy = "order")
+    private List<Service> services;
 
     public int getId() {
         return id;
@@ -69,20 +68,12 @@ public class Order {
         this.totalCost = totalCost;
     }
 
-    public Date getDateFrom() {
-        return dateFrom;
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
-    }
-
-    public Date getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public Mechanic getMechanic() {
@@ -93,11 +84,11 @@ public class Order {
         this.mechanic = mechanic;
     }
 
-    public Long getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(Long orderNumber) {
+    public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -115,5 +106,13 @@ public class Order {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 }

@@ -11,6 +11,10 @@ import javax.persistence.*;
 @Table(name = "Cars")
 public class Car {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     @Column(name = "BRAND")
     private String brand;
 
@@ -26,7 +30,7 @@ public class Car {
     @Column(name = "PRODUCTION_YEAR")
     private int productionYear;
 
-    @OneToOne
+    @OneToOne(mappedBy = "car")
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

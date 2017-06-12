@@ -1,8 +1,6 @@
 package com.mas.project.mas.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Janusz on 07.06.2017.
@@ -10,7 +8,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USERS")
 public class User {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String firstName;
     private String lastName;

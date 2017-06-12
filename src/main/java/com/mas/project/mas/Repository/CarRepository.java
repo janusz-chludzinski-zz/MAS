@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by Janusz on 12.06.2017.
  */
 public interface CarRepository extends JpaRepository<Mechanic, Long> {
-    Car findByOrderId(int orderId);
+//    Car findByOrderId(int orderId);
 }
