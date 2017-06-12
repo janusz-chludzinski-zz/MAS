@@ -4,13 +4,14 @@ import com.mas.project.mas.Entity.Mechanic;
 import com.mas.project.mas.Entity.Service;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Janusz on 11.06.2017.
  */
 @Component(value = "OrderCollector")
-public class OrderCollector {
+public class OrderDTO {
 
     private String brand;
     private String model;
@@ -24,7 +25,7 @@ public class OrderCollector {
     private String email;
     private String phone;
 
-    private Set<Service> serviceSet;
+    private List<String> serviceList;
     private String total;
 
     private String mechanicEmail;
@@ -109,12 +110,12 @@ public class OrderCollector {
         this.phone = phone;
     }
 
-    public Set<Service> getServiceSet() {
-        return serviceSet;
+    public List<String> getServiceList() {
+        return serviceList;
     }
 
-    public void setServiceSet(Set<Service> serviceSet) {
-        this.serviceSet = serviceSet;
+    public void setServiceList(List<String> serviceList) {
+        this.serviceList = serviceList;
     }
 
     public String getTotal() {

@@ -7,7 +7,7 @@
     <aside th:replace="basic_template :: navigation"></aside>
     <h1>Nowe zamówienie</h1>
 
-    <form action="" th:action="@{/order/new}" method="post" th:object="${orderCollector}">
+    <form action="" th:action="@{/order/new}" method="post" th:object="${orderDTO}">
         <fieldset>
             <h2>Informacje o aucie</h2>
 
@@ -52,11 +52,11 @@
         <fieldset>
             <h2>Usługi wykupione do zamówienia</h2>
 
-            <input type="checkbox" name="breaks" value="">
-            <input type="checkbox" name="electrics" value="">
-            <input type="checkbox" name="body" value="">
-            <input type="checkbox" name="engine" value="">
-            <input type="checkbox" name="fluids" value="">
+            <input type="checkbox" name="service" id="breaks" value="Hamulce">
+            <input type="checkbox" name="service" id="electrics" value="Elektryka">
+            <input type="checkbox" name="service" id="body" value="Blacharka">
+            <input type="checkbox" name="service" id="engine" value="Silnik">
+            <input type="checkbox" name="service" id="fluids" value="Płyny">
             <label for="total">Suma</label>
             <input type="text" name="total" id="total">
         </fieldset>

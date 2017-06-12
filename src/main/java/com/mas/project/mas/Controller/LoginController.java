@@ -25,7 +25,7 @@ public class LoginController {
     private static final Logger logger = LogManager.getLogger(LoginController.class);
 
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
     public ModelAndView log(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");

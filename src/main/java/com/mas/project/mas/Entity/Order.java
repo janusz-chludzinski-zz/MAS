@@ -36,8 +36,13 @@ public class Order {
     @Column(name = "ORDER_NUMBER")
     private Long orderNumber;
 
-//    Set<Service> serviceSet;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID")
+    private Car car;
 
+    @OneToOne
+    @JoinColumn(name = "ID")
+    private Client client;
 
 
     public int getId() {
@@ -94,5 +99,21 @@ public class Order {
 
     public void setOrderNumber(Long orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

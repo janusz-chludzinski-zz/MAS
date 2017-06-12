@@ -13,4 +13,6 @@ import java.util.List;
 public interface MechanicRepository extends JpaRepository<Mechanic, Long> {
     @Override
     List<Mechanic> findAll();
+
+    Mechanic findByEmail(String email);
 }

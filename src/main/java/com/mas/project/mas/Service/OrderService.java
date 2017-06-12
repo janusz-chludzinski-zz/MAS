@@ -1,5 +1,6 @@
 package com.mas.project.mas.Service;
 
+import com.mas.project.mas.Beans.OrderDTO;
 import com.mas.project.mas.ENUM.Status;
 import com.mas.project.mas.Entity.Order;
 
@@ -8,7 +9,7 @@ import com.mas.project.mas.Entity.Order;
  */
 public interface OrderService {
     Order findByOrderNumber(Long orderNumber);
-    Order saveOrder(Order order);
+    Order saveOrder(OrderDTO order);
     Order updateOrder(Order order);
     Order setOrderStatus(Order order, Status status);
 }
