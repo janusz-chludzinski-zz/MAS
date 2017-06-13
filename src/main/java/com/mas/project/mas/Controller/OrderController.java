@@ -1,6 +1,7 @@
 package com.mas.project.mas.Controller;
 
 import com.mas.project.mas.Beans.OrderDTO;
+import com.mas.project.mas.Entity.Order;
 import com.mas.project.mas.Service.MechanicService;
 import com.mas.project.mas.Service.OrderService;
 import org.apache.logging.log4j.LogManager;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -38,12 +40,18 @@ public class OrderController {
     }
 
     @PostMapping(value = {"/new"})
-    public ModelAndView registerNewOrder(@ModelAttribute("orderDTO")OrderDTO orderDTO, HttpServletRequest httpServletRequest){
+    public String registerNewOrder(@ModelAttribute("orderDTO")OrderDTO orderDTO, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes){
         orderDTO.setServiceList(Arrays.asList(httpServletRequest.getParameterValues("service")));
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("order", orderService.saveOrder(orderDTO));
-        modelAndView.setViewName("test");
+        Order order = orderService.saveOrder(orderDTO);
+        redirectAttributes.addFlashAttribute("order", order);
 
+        return "redirect:/order/" + order.getId();
+    }
+
+    @GetMapping(value = {"/{orderId}"})
+    public ModelAndView findOrder(@ModelAttribute("order") Order order){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("zyziek");
         return modelAndView;
     }
 }
