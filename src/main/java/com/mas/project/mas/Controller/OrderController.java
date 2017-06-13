@@ -2,6 +2,7 @@ package com.mas.project.mas.Controller;
 
 import com.mas.project.mas.Beans.OrderDTO;
 import com.mas.project.mas.Entity.Order;
+import com.mas.project.mas.Repository.OrderRepository;
 import com.mas.project.mas.Service.MechanicService;
 import com.mas.project.mas.Service.OrderService;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +29,9 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    OrderRepository orderRepository;
+
     private static final Logger logger = LogManager.getLogger(OrderController.class);
 
     @GetMapping(value = {"/new"})
@@ -40,18 +44,18 @@ public class OrderController {
     }
 
     @PostMapping(value = {"/new"})
-    public String registerNewOrder(@ModelAttribute("orderDTO")OrderDTO orderDTO, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes){
+    public String registerNewOrder(@ModelAttribute("orderDTO")OrderDTO orderDTO, HttpServletRequest httpServletRequest){
         orderDTO.setServiceList(Arrays.asList(httpServletRequest.getParameterValues("service")));
         Order order = orderService.saveOrder(orderDTO);
-        redirectAttributes.addFlashAttribute("order", order);
 
         return "redirect:/order/" + order.getId();
     }
 
     @GetMapping(value = {"/{orderId}"})
-    public ModelAndView findOrder(@ModelAttribute("order") Order order){
+    public ModelAndView findOrder(@PathVariable Integer orderId){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("zyziek");
+        modelAndView.setViewName("order-preview");
+        modelAndView.addObject("order", orderRepository.findOne(orderId));
         return modelAndView;
     }
 }
