@@ -8,11 +8,12 @@ import com.mas.project.mas.Repository.MechanicRepository;
 import com.mas.project.mas.Repository.OrderRepository;
 import com.mas.project.mas.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Janusz on 07.06.2017.
@@ -20,7 +21,10 @@ import java.util.List;
 @org.springframework.stereotype.Service("orderService")
 public class OrderServiceImpl implements OrderService {
 
-    Order order = new Order();
+
+
+    @Autowired
+    EntityManager entityManager;
 
     @Autowired
     OrderRepository orderRepository;
@@ -32,15 +36,20 @@ public class OrderServiceImpl implements OrderService {
     ServiceRepository serviceRepository;
 
     @Override
-    public Order findByOrderNumber(Long orderNumber) {
+    public Order findByOrderNumber(Integer orderNumber) {
         return orderRepository.findOne(orderNumber);
     }
 
     @Override
+    @Transactional
     public Order saveOrder(OrderDTO orderDTO) {
-        order = buildOrder(orderDTO);
-        orderRepository.save(order);
-        return null;
+        Order order = new Order();
+        order = buildOrder(orderDTO, order);
+
+        order = orderRepository.save(order);
+        order.setServices(getServicesForOrder(orderDTO));
+
+        return orderRepository.save(order);
     }
 
     @Override
@@ -53,13 +62,13 @@ public class OrderServiceImpl implements OrderService {
         return null;
     }
 
-    private Order buildOrder(OrderDTO orderDTO){
+    private Order buildOrder(OrderDTO orderDTO, Order order){
+
         order.setCar(buildCar(orderDTO));
         order.setClient(buildClient(orderDTO));
         order.setMechanic(getMechanicByEmail(orderDTO));
-        order.setServices(getServicesForOrder(orderDTO));
-        order.setTotalCost(calculateTotalCost());
-        order.setOrderNumber(generateOrderNumber());
+        order.setTotalCost(calculateTotalCost(order, orderDTO));
+        order.setOrderNumber(generateOrderNumber(order));
         order.setRegistrationDate(new Date());
         order.setStatus(Status.REGISTERED);
 
@@ -77,7 +86,6 @@ public class OrderServiceImpl implements OrderService {
         car.setRegistration(orderDTO.getRegistration());
         car.setEngineType(orderDTO.getEngineType());
         car.setProductionYear(Integer.parseInt(orderDTO.getProdYear()));
-        car.setOrder(order);
 
         return car;
     }
@@ -88,14 +96,13 @@ public class OrderServiceImpl implements OrderService {
         client.setLastName(orderDTO.getLastName());
         client.setEmail(orderDTO.getEmail());
         client.setPhone(orderDTO.getPhone());
-        client.setOrder(order);
 
         return client;
     }
 
-    private List<Service> getServicesForOrder(OrderDTO orderDTO){
+    private Set<Service> getServicesForOrder(OrderDTO orderDTO){
         List<String> servicesNames = orderDTO.getServiceList();
-        List<Service> services = new ArrayList<>();
+        Set<Service> services = new HashSet<>();
 
         for(String serviceName : servicesNames){
             services.add(serviceRepository.findByName(serviceName));
@@ -105,22 +112,24 @@ public class OrderServiceImpl implements OrderService {
         return services;
     }
 
-    private double calculateTotalCost(){
-        List<Service> services = order.getServices();
-        double result = 0;
+    private BigDecimal calculateTotalCost(Order order, OrderDTO orderDTO){
+        List<String> services = orderDTO.getServiceList();
+        BigDecimal result = new BigDecimal(0);
+        Service service;
 
-        for(Service service : services){
-            result += service.getCost();
+        for(String serviceName : services){
+            service = serviceRepository.findByName(serviceName);
+            result = result.add(service.getCost());
         }
 
         return result;
     }
 
-    private String generateOrderNumber(){
+    private String generateOrderNumber(Order order){
         StringBuilder sb = new StringBuilder();
         sb.append(dateToStringFormatYYYYMMDD());
         sb.append("_");
-        sb.append(order.getTotalCost());
+        sb.append(generateRandomNumber());
 
         return sb.toString();
     }
@@ -138,5 +147,9 @@ public class OrderServiceImpl implements OrderService {
         return sb.toString();
     }
 
+    private int generateRandomNumber(){
+        Random random = new Random();
+        return random.nextInt((99999 - 10000) + 1) + 10000;
+    }
 
 }

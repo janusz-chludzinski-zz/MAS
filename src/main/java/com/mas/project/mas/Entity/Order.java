@@ -3,8 +3,10 @@ package com.mas.project.mas.Entity;
 import javax.persistence.*;
 
 import com.mas.project.mas.ENUM.Status;
+
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Janusz on 07.06.2017.
@@ -21,7 +23,7 @@ public class Order {
     private Status status;
 
     @Column(name = "TOTAL_COST")
-    private Double totalCost;
+    private BigDecimal totalCost;
 
     @Column(name = "REGISTRATION_DATE")
     private Date registrationDate;
@@ -34,15 +36,24 @@ public class Order {
     private String orderNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID")
     private Car car;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID")
     private Client client;
 
-    @OneToMany(targetEntity = Service.class, mappedBy = "order")
-    private List<Service> services;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "ORDER_SERVICE",
+//            joinColumns = {@JoinColumn(name = "ORDER_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "SERVICE_ID")})
+//    private List<Service> services;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name="ORDER_SERVICE",
+            joinColumns= {@JoinColumn(name="ORDER_ID", referencedColumnName="ID")},
+            inverseJoinColumns=@JoinColumn(name="SERVICE_ID", referencedColumnName="ID"))
+    private Set<Service> services;
 
     public int getId() {
         return id;
@@ -60,11 +71,11 @@ public class Order {
         this.status = status;
     }
 
-    public Double getTotalCost() {
+    public BigDecimal getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(Double totalCost) {
+    public void setTotalCost(BigDecimal totalCost) {
         this.totalCost = totalCost;
     }
 
@@ -108,11 +119,11 @@ public class Order {
         this.client = client;
     }
 
-    public List<Service> getServices() {
+    public Set<Service> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(Set<Service> services) {
         this.services = services;
     }
 }

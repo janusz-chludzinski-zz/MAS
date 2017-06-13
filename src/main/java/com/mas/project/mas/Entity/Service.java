@@ -1,6 +1,8 @@
 package com.mas.project.mas.Entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * Created by Janusz on 07.06.2017.
@@ -11,23 +13,39 @@ public class Service {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private int id;
 
     @Column(name = "NAME")
     private String name;
 
     @Column(name = "COST")
-    private double cost;
+    private BigDecimal cost;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
+    @ManyToMany(mappedBy = "services")
+    private Set<Order> orders;
 
-    public double getCost() {
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 
