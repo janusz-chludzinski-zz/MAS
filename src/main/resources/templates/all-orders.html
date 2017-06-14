@@ -8,14 +8,44 @@
     <header th:replace="basic_template :: header"></header>
     <aside th:replace="basic_template :: navigation"></aside>
     <main>
-        <form class="search-box" name="search" id="search" action="">
+        <form class="search-box" action="">
             <div class="inputs-wrap">
-                <input type="text">
+                <input type="text" placeholder="Wpisz numer zamówienia" name="search" id="search">
                 <button type="submit" class="fa fa-search" aria-hidden="true"></button>
             </div>
         </form>
         <ul>
-            <li class="order-item" th:each="order : ${orders}" th:value="${order.id}"  th:text="${order.id}"></li>
+            <li class="order-item" th:each="order : ${orders}">
+                <a href="" th:href="@{|/orders/${order.id}|}" class="order-item-link">
+                    <div class="main-info">
+                        <div class="order-number">
+                            <p class="order-number-number" th:text="${order.orderNumber}"></p>
+                            <p class="item-description">Numer zamówienia</p>
+                        </div>
+                        <div class="order-car">
+                            <p class="order-car-details" th:text="${order.car.brand} + ' ' + ${order.car.model}"></p>
+                            <p class="item-description">Auto</p>
+                        </div>
+                    </div>
+                    <div class="sub-info">
+                        <div class="order-date">
+                            <p class="item-description">
+                                Data utworzenia:
+                                <span th:text="${order.registrationDate}" class="order-date-date"></span>
+                            </p>
+                        </div>
+                        <div class="order-status">
+                            <p class="item-description">
+                                Status:
+                                <span class="order-status-status" th:text="${order.status}"></span>
+                            </p>
+                        </div>
+                        <div class="order-show-details">
+                            <button>Zobacz szczegóły</button>
+                        </div>
+                    </div>
+                </a>
+            </li>
         </ul>
     </main>
     <footer th:replace="basic_template :: footer"></footer>

@@ -12,6 +12,10 @@
 </head>
 <body>
 <header th:fragment="header">
+    <a class="logo-wrap">
+        <i class="fa fa-wrench logo" aria-hidden="true"></i>
+        <p>Car <span>FIX</span></p>
+    </a>
     <div class="logout-wrap">
         <i class="fa fa-sign-out link" aria-hidden="true"></i>
         <a class="logout link" th:fragment="logout" th:href="@{/logout}">Logout</a>

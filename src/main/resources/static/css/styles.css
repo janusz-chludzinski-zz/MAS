@@ -53,6 +53,41 @@ header {
     background: #2d3a40;
 }
 
+header .logo-wrap {
+    display: block;
+    float: left;
+    padding: 10px 10px 0 20px;
+    width: 160px;
+}
+
+header .logo-wrap:hover p {
+    color: #fff;
+}
+
+header .logo-wrap .logo {
+    background: #00b230;
+    color: #fff;
+    display: block;
+    border-radius: 25px;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    padding-top: 8px;
+    margin-right: 20px;
+    float: left;
+}
+
+header .logo-wrap p {
+    font-size: 1.2em;
+    color: #cecece;
+    padding-top: 7px;
+    transition: all 0.3s ease;
+}
+
+header .logo-wrap p span {
+    font-weight: 600;
+}
+
 header .logout-wrap {
     color: #cecece;
     position: relative;
@@ -143,7 +178,7 @@ main {
 }
 
 main .search-box {
-    padding: 20px;
+    padding: 20px 0 55px 0;
 }
 
 main .search-box .inputs-wrap {
@@ -193,16 +228,102 @@ main .search-box .inputs-wrap button:hover {
     background: rgba(87, 102, 109, 1);
 }
 
-main ul {
-}
 
-main .order-item {
+
+main ul .order-item {
     background-color: #fff;
-    padding: 20px;
     margin-bottom: 20px;
+    border-left: 3px solid rgb(38, 50, 56);
+    overflow: auto;
+    transition: all 0.3s ease;
 }
 
-main .order-item:last-child {
+main ul .order-item:hover {
+    -webkit-box-shadow: 0px 3px 31px -3px rgba(48,47,48,1);
+    -moz-box-shadow: 0px 3px 31px -3px rgba(48,47,48,1);
+    box-shadow: 0px 3px 31px -3px rgba(48,47,48,1);
+}
+
+main ul .order-item .order-item-link {
+    display: block;
+    padding: 50px 0 0 0;
+}
+
+main ul .order-item .main-info {
+    padding: 0 0 0 35px;
+    overflow: auto;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+main ul .order-item .main-info .order-number {
+    float: left;
+    overflow: auto;
+    width: 500px;
+    padding-bottom: 50px;
+}
+
+main ul .order-item .main-info .order-number .order-number-number {
+    font-size: 1.5em;
+    font-weight: 600;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+main ul .order-item .main-info .item-description {
+    color: #cecece;
+}
+
+main ul .order-item .main-info .order-car {
+    float: left;
+}
+
+main ul .order-item .main-info .order-car .order-car-details {
+    font-size: 1.5em;
+    font-weight: 600;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+main ul .order-item .sub-info {
+    background: rgba(87, 102, 109, 0.5);
+    padding: 20px 35px;
+    overflow: auto;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+main ul .order-item .sub-info .order-status-status {
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+main ul .order-item .sub-info .order-date {
+    float: left;
+    width: 500px;
+    padding-top: 15px;
+}
+
+main ul .order-item .sub-info .order-date .order-date-date {
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+main ul .order-item .sub-info .order-status {
+    float: left;
+    padding-top: 15px;
+}
+
+main ul .order-item .sub-info .order-show-details {
+    float: right;
+}
+
+main ul .order-item .sub-info .order-show-details button {
+    padding: 15px 25px;
+    background-color: #263238;
+    color: #cecece;
+    border: none;
+}
+
+main ul .order-item:last-child {
     margin-bottom: 0;
 }
 
