@@ -393,6 +393,94 @@ main .section-details .service-value {
     float: right;
 }
 
+/********** NEW ORDER **********/
+
+form fieldset label {
+    padding-top: 10px;
+    padding-right: 20px;
+    float: left;
+    display: inline-block;
+    width: 200px;
+}
+
+form fieldset input[type="text"], input[type="email"]{
+    width: 450px;
+    height: 40px;
+    display: block;
+    margin-bottom: 35px;
+    transition: all 0.3s ease;
+    outline:none;
+    border: 1px solid transparent;
+    float: left;
+}
+
+form fieldset input[type="text"]:focus{
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+form fieldset input[type="email"]:focus{
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+form fieldset input[type="text"]:hover{
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+form fieldset input[type="email"]:hover{
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+form fieldset input[type="checkbox"]{
+    margin-top: 10px;
+}
+
+form fieldset .select-input {
+    width: 450px;
+    height: 40px;
+}
+
+form .order-submit {
+    margin-top: 20px;
+    width: 650px;
+}
+
+form .order-submit button {
+    float: right;
+    margin-left: 30px;
+}
+form .order-submit a {
+    float: right;
+}
+
+
+form fieldset h2 {
+    margin-top: 30px;
+}
+
+form fieldset textarea {
+    width: 450px;
+    height: 200px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+form fieldset textarea:hover {
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+form fieldset textarea:focus {
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+.input-wrap {
+    clear: both;
+}
+
+.error {
+    color: red;
+    float: left;
+    padding: 10px;
+}
+
 h1 {
     font-size: 1.6em;
     font-weight: 600;
@@ -414,9 +502,17 @@ h3 {
 }
 
 button {
-    color: red;
     transition: all 0.3s ease;
     cursor: pointer;
+    width: 180px;
+    height: 50px;
+    border: none;
+    background: rgba(38, 50, 56, 0.6);
+}
+
+button:hover {
+    background: rgba(38, 50, 56, 1);
+    color: #fff;
 }
 
 a {
@@ -459,4 +555,8 @@ footer p {
 .clear-float {
     clear: both;
     padding-top: 25px;
+}
+
+.details-padding {
+    padding-left: 20px
 }

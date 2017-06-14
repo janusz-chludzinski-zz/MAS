@@ -9,11 +9,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class OrderController {
     @GetMapping(value = {"/new"})
     public ModelAndView newOrder(){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("orderDTO", new OrderDTO());
         modelAndView.addObject("mechanics", mechanicService.findAllMechanics());
         modelAndView.setViewName("new-order");
 
@@ -42,7 +46,11 @@ public class OrderController {
     }
 
     @PostMapping(value = {"/new"})
-    public String registerNewOrder(@ModelAttribute("orderDTO")OrderDTO orderDTO, HttpServletRequest httpServletRequest){
+    public String registerNewOrder(@ModelAttribute("orderDTO") @Valid OrderDTO orderDTO, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+        if(bindingResult.hasErrors()){
+            return "new-order";
+        }
+
         orderDTO.setServiceList(Arrays.asList(httpServletRequest.getParameterValues("service")));
         Order order = orderService.saveOrder(orderDTO);
 

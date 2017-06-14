@@ -27,8 +27,8 @@
         <h3>Data przyjęcia zamówienia</h3>
         <section class="section-details">
             <p class="label">
-                Data
-                <span th:text="${order.registrationDate}"></span>
+                Data:
+                <span class="details-padding" th:text="${order.registrationDate}"></span>
             </p>
         </section>
 
@@ -94,8 +94,8 @@
 
         <h3>Mechanik przypisany do zamówienia</h3>
         <section class="section-details">
-            <p class="label">Mechanik
-                <span th:text="${order.mechanic.firstName}"></span>
+            <p class="label">Mechanik:
+                <span class="details-padding" th:text="${order.mechanic.firstName + ' ' + order.mechanic.lastName}"></span>
             </p>
         </section>
     </main>

@@ -2,8 +2,13 @@ package com.mas.project.mas.Beans;
 
 import com.mas.project.mas.Entity.Mechanic;
 import com.mas.project.mas.Entity.Service;
+import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
@@ -13,21 +18,50 @@ import java.util.Set;
 @Component(value = "OrderCollector")
 public class OrderDTO {
 
+    @NotNull
+    @Size(min = 2, max=30)
     private String brand;
+
+    @NotNull
+    @Size(min = 2, max=30)
     private String model;
+
+    @NotNull
+    @Size(min = 2, max=30)
     private String registration;
+
+    @NotNull
+    @Size(min = 2, max=30)
     private String engineType;
+
+    @NotNull
+    @Size(min = 4, max=4)
+    @NumberFormat(style = NumberFormat.Style.NUMBER)
     private String prodYear;
+
     private String extraInfo;
 
+    @NotNull
+    @Size(min = 2, max=30)
     private String firstName;
+
+    @NotNull
+    @Size(min = 2, max=30)
     private String lastName;
+
+    @NotNull
+    @NotEmpty
+    @Email
     private String email;
+
+    @NotNull
+    @Size(min = 2, max = 30)
     private String phone;
 
     private List<String> serviceList;
     private String total;
 
+    @NotNull
     private String mechanicEmail;
 
     public String getBrand() {
