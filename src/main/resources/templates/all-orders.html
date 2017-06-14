@@ -16,7 +16,7 @@
         </form>
         <ul>
             <li class="order-item" th:each="order : ${orders}">
-                <a href="" th:href="@{|/orders/${order.id}|}" class="order-item-link">
+                <a href="" th:href="@{|/order/${order.id}|}" class="order-item-link">
                     <div class="main-info">
                         <div class="order-number">
                             <p class="order-number-number" th:text="${order.orderNumber}"></p>
