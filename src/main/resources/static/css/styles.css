@@ -1,8 +1,243 @@
-.side-nav {
-    border: 1px solid red;
-    float: left;
+html, body, div, main, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    outline: none;
+}
+
+header {
+    height: 6vh;
+    background: #2d3a40;
+}
+
+header .logout-wrap {
+    color: #cecece;
+    position: relative;
+    float: right;
+    transition: all 0.3s ease;
+    height: 100%;
+    width: 110px;
+}
+
+header .logout-wrap a {
+    color: #cecece;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 17px 40px;
+}
+
+header .logout-wrap i {
+    position: absolute;
+    left: 15px;
+    top: 17px;
+}
+
+header .logout-wrap:hover {
+    color: #fff;
+    background: #57666d;
+}
+
+header .logout-wrap:hover a {
+     color: #fff;
+     background: #57666d;
+}
+header .logout-wrap:hover i {
+    color: #fff;
+    background: #57666d;
+}
+
+
+aside {
+    float: left;
+    height: 91vh;
+    width: 20%;
+    background: #263238;
+}
+
+aside nav {
+    padding: 35px 0;
+}
+
+aside .nav-item {
+    position: relative;
+}
+
+aside .nav-item i{
+    position: absolute;
+    padding-left: 20px;
+    top: 22px;
+    color: #cecece;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+aside .nav-item i:hover {
+    color: #fff;
+}
+
+aside .nav-item a{
+    display: block;
+    padding: 20px 45px;
+    color: #cecece;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+aside .nav-item a:hover {
+    color: #fff;
+    background: #57666d;
+}
+
+main {
+    height: 91vh;
+    width: 80%;
+    float: right;
+    padding: 35px;
+    background-color: #e3e8ea;
+    overflow: auto;
+}
+
+main .search-box {
+    padding: 20px;
+}
+
+main .search-box .inputs-wrap {
+    width: 60%;
+    /*border: 1px solid #57666d;*/
+    margin: 0 auto;
+    border-radius: 20px;
+    position: relative;
+}
+
+main .search-box .inputs-wrap input[type="text"]{
+    border-radius: 25px;
+    outline: none;
+    box-shadow: none;
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    font-size: 1.2em;
+    background: transparent;
+    border: 1px solid rgba(87, 102, 109, 0.5);
+    transition: all 0.3s ease;
+}
+
+main .search-box .inputs-wrap input[type="text"]:focus {
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+main .search-box .inputs-wrap input[type="text"]:hover {
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+main .search-box .inputs-wrap button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: none;
+    height: 100%;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 0 25px;
+    background: transparent;
+    color: rgba(87, 102, 109, 0.5);
+}
+
+main .search-box .inputs-wrap button:hover {
+    color: #fff;
+    background: rgba(87, 102, 109, 1);
+}
+
+main ul {
+}
+
+main .order-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+main .order-item:last-child {
+    margin-bottom: 0;
+}
+
+
 
 button {
     color: red;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+footer {
+    clear: both;
+    height: 3vh;
+    color: #cecece;
+    background: #000;
+}
+
+footer p {
+    text-align: center;
+    font-size: 0.8em;
+    padding-top: 7px;
+}
+
+.link {
+    color: #cecece;
+    transition: all 0.3s ease;
+}
+
+.link:hover {
+    color: #fff;
+    background: #57666d;
 }

@@ -21,8 +21,6 @@ import java.util.*;
 @org.springframework.stereotype.Service("orderService")
 public class OrderServiceImpl implements OrderService {
 
-
-
     @Autowired
     EntityManager entityManager;
 
@@ -150,6 +148,14 @@ public class OrderServiceImpl implements OrderService {
     private int generateRandomNumber(){
         Random random = new Random();
         return random.nextInt((99999 - 10000) + 1) + 10000;
+    }
+
+    public Order findOne(Integer id){
+        return orderRepository.findOne(id);
+    }
+
+    public List<Order> findAll(){
+        return orderRepository.findAll();
     }
 
 }

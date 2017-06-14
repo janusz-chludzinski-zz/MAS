@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Janusz on 11.06.2017.
@@ -28,9 +29,6 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
-
-    @Autowired
-    OrderRepository orderRepository;
 
     private static final Logger logger = LogManager.getLogger(OrderController.class);
 
@@ -55,7 +53,16 @@ public class OrderController {
     public ModelAndView findOrder(@PathVariable Integer orderId){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("order-preview");
-        modelAndView.addObject("order", orderRepository.findOne(orderId));
+        modelAndView.addObject("order", orderService.findOne(orderId));
+        return modelAndView;
+    }
+
+    @GetMapping(value = {"/all"})
+    public ModelAndView listAll(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Order> orders = orderService.findAll();
+        modelAndView.addObject("orders", orders);
+        modelAndView.setViewName("all-orders");
         return modelAndView;
     }
 }

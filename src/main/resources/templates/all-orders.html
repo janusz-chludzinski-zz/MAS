@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="basic_template :: head">
+</head>
+
+<body>
+    <header th:replace="basic_template :: header"></header>
+    <aside th:replace="basic_template :: navigation"></aside>
+    <main>
+        <form class="search-box" name="search" id="search" action="">
+            <div class="inputs-wrap">
+                <input type="text">
+                <button type="submit" class="fa fa-search" aria-hidden="true"></button>
+            </div>
+        </form>
+        <ul>
+            <li class="order-item" th:each="order : ${orders}" th:value="${order.id}"  th:text="${order.id}"></li>
+        </ul>
+    </main>
+    <footer th:replace="basic_template :: footer"></footer>
+</body>
+</html>
