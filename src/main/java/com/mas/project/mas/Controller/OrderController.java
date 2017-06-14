@@ -53,14 +53,14 @@ public class OrderController {
     public ModelAndView findOrder(@PathVariable Integer orderId){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("order-preview");
-        modelAndView.addObject("order", orderService.findOne(orderId));
+        modelAndView.addObject("order", orderService.findOneOrder(orderId));
         return modelAndView;
     }
 
     @GetMapping(value = {"/all"})
     public ModelAndView listAll(){
         ModelAndView modelAndView = new ModelAndView();
-        List<Order> orders = orderService.findAll();
+        List<Order> orders = orderService.findAllOrders();
         modelAndView.addObject("orders", orders);
         modelAndView.setViewName("all-orders");
         return modelAndView;

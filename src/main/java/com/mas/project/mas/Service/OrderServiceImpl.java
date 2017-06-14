@@ -158,4 +158,8 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
+    public List<Order> findAllOrders(){ return orderRepository.findAllOrders();}
+
+    public Order findOneOrder(Integer id) { return orderRepository.findOneOrder(id);}
+
 }

@@ -5,7 +5,101 @@
 </head>
 
 <body >
-<aside th:replace="basic_template :: navigation"></aside>
-<div th:text="${order.id}">Jan</div>
+    <header th:replace="basic_template :: header"></header>
+    <aside th:replace="basic_template :: navigation"></aside>
+
+    <main>
+        <div class="top-wrapper">
+            <div class="h1-wrapper">
+                <h1 th:text="${order.orderNumber}"></h1>
+                <p>Numer zamówienia</p>
+            </div>
+
+            <div class="status-wrapper">
+                <div class="status" th:text="${order.status}"></div>
+                <p>Status</p>
+                <a href="" class="change-status"></a>
+            </div>
+        </div>
+
+        <h2>Szczegóły zamówienia</h2>
+
+        <h3>Data przyjęcia zamówienia</h3>
+        <section class="section-details">
+            <p class="label">
+                Data
+                <span th:text="${order.registrationDate}"></span>
+            </p>
+        </section>
+
+        <h3>Informacje o aucie</h3>
+        <section class="section-details">
+            <div class="detail float">
+                <p class="label">Marka</p>
+                <p class="detail-info" th:text="${order.car.brand}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label">Model</p>
+                <p class="detail-info" th:text="${order.car.model}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label">Rejestracja</p>
+                <p class="detail-info" th:text="${order.car.registration}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label">Typ silnika</p>
+                <p class="detail-info" th:text="${order.car.engineType}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label">Rok produkcji</p>
+                <p class="detail-info" th:text="${order.car.productionYear}"></p>
+            </div>
+            <div class="detail clear-float">
+                <p class="label">Informacje dodatkowe</p>
+                <p class="detail-info" th:text="${order.car.brand}"></p>
+            </div>
+        </section>
+
+        <h3>Informacje o właścicielu</h3>
+        <section class="section-details">
+            <div class="detail float">
+                <p class="label">Imie</p>
+                <p class="detail-info" th:text="${order.client.firstName}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label">Nazwisko</p>
+                <p class="detail-info" th:text="${order.client.lastName}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label float">E-mail</p>
+                <p class="detail-info" th:text="${order.client.email}"></p>
+            </div>
+            <div class="detail float">
+                <p class="label">Telefon</p>
+                <p class="detail-info" th:text="${order.client.phone}"></p>
+            </div>
+        </section>
+
+        <h3>Usługi wykupione do zamówienia</h3>
+        <section class="section-details">
+            <ol>
+                <li th:each="service : ${order.services}">
+                    <p class="service-name" th:text="${service.name}"></p>
+                    <p class="service-value" th:text="${service.cost}"></p>
+                </li>
+            </ol>
+            <p class="total-label">Suma:</p>
+            <p class="total" th:text="${order.totalCost}"></p>
+        </section>
+
+        <h3>Mechanik przypisany do zamówienia</h3>
+        <section class="section-details">
+            <p class="label">Mechanik
+                <span th:text="${order.mechanic.firstName}"></span>
+            </p>
+        </section>
+    </main>
+
+    <footer th:replace="basic_template :: footer"></footer>
 </body>
 </html>

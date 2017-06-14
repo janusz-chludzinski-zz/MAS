@@ -327,7 +327,91 @@ main ul .order-item:last-child {
     margin-bottom: 0;
 }
 
+/********** SINGLE ORDER **********/
+main .top-wrapper {
+    border-top: 3px solid rgb(38, 50, 56);
+    margin-bottom: 50px;
+    overflow: hidden;
+    background: #fff;
+    padding: 15px 20px 15px 20px;
+}
 
+main .top-wrapper .h1-wrapper {
+    float: left;
+}
+
+main .top-wrapper .status-wrapper{
+    float: right;
+}
+
+main .top-wrapper .status-wrapper .status {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+main .top-wrapper .status-wrapper p {
+    display: inline-block;
+}
+
+main .section-details {
+    padding: 15px 20px 15px 20px;
+    border-left: 3px solid rgb(38, 50, 56);
+    margin-bottom: 50px;
+    overflow: hidden;
+    background: #fff;
+}
+
+main .section-details span {
+    font-weight: 100;
+}
+
+main .section-details ol li {
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+main .section-details .total-label{
+    clear: both;
+    font-weight: 600;
+    float: left;
+    padding-top: 20px;
+}
+
+main .section-details .total{
+    float: right;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+main .section-details .service-name {
+    float: left;
+}
+
+main .section-details .service-value {
+    float: right;
+}
+
+h1 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(38, 50, 56);
+}
+
+h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
 
 button {
     color: red;
@@ -357,8 +441,22 @@ footer p {
     color: #cecece;
     transition: all 0.3s ease;
 }
-
+.float {
+    float: left;
+    margin-right: 50px;
+    width: 190px;
+}
 .link:hover {
     color: #fff;
     background: #57666d;
+}
+
+.label {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.clear-float {
+    clear: both;
+    padding-top: 25px;
 }
