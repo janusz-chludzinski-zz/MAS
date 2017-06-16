@@ -27,7 +27,6 @@ public class LoginController {
 
     @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
     public ModelAndView log(){
-        logger.debug(" >>>>>>>>>>>>>>>>>>>>>>>> test output");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
@@ -36,19 +35,10 @@ public class LoginController {
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("redirect:/order/all");
         return modelAndView;
     }
 
-
-    @RequestMapping(value={"/zyziek"}, method = RequestMethod.GET)
-    public ModelAndView zyziek(){
-        logger.debug("....home method start");
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("zyziek");
-
-        return modelAndView;
-    }
 
     @RequestMapping(value ={"/login"}, method = RequestMethod.POST)
     public ModelAndView login() {

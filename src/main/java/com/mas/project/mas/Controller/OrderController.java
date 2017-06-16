@@ -46,15 +46,20 @@ public class OrderController {
     }
 
     @PostMapping(value = {"/new"})
-    public String registerNewOrder(@ModelAttribute("orderDTO") @Valid OrderDTO orderDTO, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+    public ModelAndView registerNewOrder(@ModelAttribute("orderDTO") @Valid OrderDTO orderDTO, BindingResult bindingResult, HttpServletRequest httpServletRequest){
+        ModelAndView modelAndView = new ModelAndView();
+
         if(bindingResult.hasErrors()){
-            return "new-order";
+            modelAndView.addObject("mechanics", mechanicService.findAllMechanics());
+            modelAndView.setViewName("new-order");
+            return modelAndView;
         }
 
         orderDTO.setServiceList(Arrays.asList(httpServletRequest.getParameterValues("service")));
         Order order = orderService.saveOrder(orderDTO);
+        modelAndView.setViewName("redirect:/order/" + order.getId());
 
-        return "redirect:/order/" + order.getId();
+        return modelAndView;
     }
 
     @GetMapping(value = {"/{orderId}"})

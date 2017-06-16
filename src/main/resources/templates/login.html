@@ -6,16 +6,27 @@
 
 </head>
 <body>
-    <form th:action="@{/login}" method="POST">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+    <div class="wrap">
 
-        <label for="password"></label>
-        <input type="password" name="password" id="password">
+        <div class="login-logo-wrap">
+            <div class="login-logo fa fa-wrench" aria-hidden="true"></div>
+            <p>Car<span>FIX</span></p>
+        </div>
+        <form class="login-box" th:action="@{/login}" method="POST">
+            <div class="login-input-wrap">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email">
+            </div>
 
-        <button name="Submit" value="Login" type="Submit" th:text="Login"></button>
-    </form>
-    <div th:if="${param.error}">Blad logowanie, podane parametry nie sa prawidlowe</div>
-    <div th:if="${param.logout}">Zostales pomyslnie wylogowany, zaloguj sie ponownie</div>
+            <div class="login-input-wrap">
+                <label for="password">Hasło</label>
+                <input type="password" name="password" id="password">
+            </div>
+
+            <button name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        </form>
+        <div class="info login-error" th:if="${param.error}">Blad logowania, podane parametry nie sa prawidlowe</div>
+        <div class="info success" th:if="${param.logout}">Zostales pomyslnie wylogowany, zaloguj sie ponownie</div>
+    </div>
 </body>
 </html>

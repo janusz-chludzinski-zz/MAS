@@ -48,6 +48,114 @@ body {
     outline: none;
 }
 
+body .wrap {
+    width: 100vw;
+    height: 100vh;
+    background: #e3e8ea;
+    padding-top: 100px;
+}
+
+body .info {
+    width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+}
+
+body .success {
+    background: #00b230;
+}
+
+body .login-error {
+    background: #ff0000;
+}
+
+body .wrap .login-logo-wrap {
+    overflow: hidden;
+    margin: 40px auto;
+    width: 800px;
+}
+
+body .wrap .login-logo-wrap p {
+    float: left;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+body .wrap .login-logo-wrap p span {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+body .wrap .login-logo-wrap .login-logo {
+    background: #00b230;
+    color: #fff;
+    display: block;
+    border-radius: 50px;
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    padding-top: 22px;
+    margin-right: 20px;
+    float: left;
+    font-size: 35px;
+}
+
+body .login-box {
+    width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    background: #fff;
+    border-left: 3px solid rgb(38, 50, 56);
+    transition: all 0.3s ease;
+}
+
+body .login-box:hover {
+    -webkit-box-shadow: 0px 3px 31px -3px rgba(48,47,48,1);
+    -moz-box-shadow: 0px 3px 31px -3px rgba(48,47,48,1);
+    box-shadow: 0px 3px 31px -3px rgba(48,47,48,1);
+}
+
+body .login-box label {
+    display: inline-block;
+    width: 100px;
+    padding-top: 11px;
+    float: left;
+
+}
+
+body .login-box .login-input-wrap {
+    margin-bottom: 35px;
+    overflow: hidden;
+    clear: both;
+}
+
+body .login-box .login-input-wrap input {
+    margin-left: 25px;
+    width: 450px;
+    height: 40px;
+    display: block;
+    transition: all 0.3s ease;
+    outline:none;
+    border: 1px solid transparent;
+    float: left;
+    padding-left: 10px;
+}
+body .login-box .login-input-wrap input:hover{
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+body .login-box .login-input-wrap input:focus{
+    border: 1px solid rgba(87, 102, 109, 1);
+}
+
+
+body .login-box  button {
+    margin-left: 395px;
+}
+
 header {
     height: 6vh;
     background: #2d3a40;
@@ -216,6 +324,7 @@ main .search-box .inputs-wrap button {
     bottom: 0;
     border: none;
     height: 100%;
+    max-width: 60px;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
     padding: 0 25px;
@@ -227,8 +336,6 @@ main .search-box .inputs-wrap button:hover {
     color: #fff;
     background: rgba(87, 102, 109, 1);
 }
-
-
 
 main ul .order-item {
     background-color: #fff;
@@ -450,6 +557,7 @@ form .order-submit button {
 }
 form .order-submit a {
     float: right;
+    padding-top: 15px;
 }
 
 
@@ -511,7 +619,7 @@ button {
 }
 
 button:hover {
-    background: rgba(38, 50, 56, 1);
+    background: #00b230;
     color: #fff;
 }
 
