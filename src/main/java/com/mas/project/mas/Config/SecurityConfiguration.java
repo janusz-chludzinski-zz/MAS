@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -38,8 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery);
-//                .passwordEncoder(bCryptPasswordEncoder);
+                .authoritiesByUsernameQuery(rolesQuery)
+                .passwordEncoder(new Md5PasswordEncoder());
     }
 
     @Override
@@ -51,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                 .formLogin()
                     .loginPage("/login").failureUrl("/login?error=true")
-                    .defaultSuccessUrl("/home")
+                    .defaultSuccessUrl("/order/all")
                     .usernameParameter("email")
                     .passwordParameter("password")
                     .permitAll()
@@ -66,6 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
+                .debug(true)
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
     }

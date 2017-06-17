@@ -39,7 +39,7 @@
                 </div>
                 <div class="input-wrap">
                     <label for="extraInfo">Informacje dodatkowe</label>
-                    <textarea name="extraInfo" id="extraInfo"></textarea>
+                    <textarea th:field="*{info}" name="extraInfo" id="extraInfo"></textarea>
                 </div>
             </fieldset>
 
@@ -65,8 +65,6 @@
                     <input th:field="*{phone}" type="text" name="phone" id="phone">
                     <p class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
                 </div>
-                <!--<label for="firstname">Marka</label>-->
-                <!--<input type="text" name="firstname" id="firstname">-->
             </fieldset>
 
             <fieldset>

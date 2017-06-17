@@ -14,9 +14,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-    @Query(value = "SELECT * FROM ORDERS o " +
-            "INNER JOIN ORDER_SERVICE os ON o.id = os.order_id " +
-            "INNER JOIN SERVICES s ON s.id = os.service_id", nativeQuery = true)
+    @Query(value = "select * from orders", nativeQuery = true)
     List<Order> findAllOrders();
 
     @Query(value = "SELECT * FROM ORDERS o " +

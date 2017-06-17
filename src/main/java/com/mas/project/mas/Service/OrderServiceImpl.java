@@ -33,31 +33,15 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ServiceRepository serviceRepository;
 
-    @Override
-    public Order findByOrderNumber(Integer orderNumber) {
-        return orderRepository.findOne(orderNumber);
-    }
 
     @Override
     @Transactional
     public Order saveOrder(OrderDTO orderDTO) {
         Order order = new Order();
         order = buildOrder(orderDTO, order);
-
-        order = orderRepository.save(order);
         order.setServices(getServicesForOrder(orderDTO));
 
         return orderRepository.save(order);
-    }
-
-    @Override
-    public Order updateOrder(Order order) {
-        return null;
-    }
-
-    @Override
-    public Order setOrderStatus(Order order, Status status) {
-        return null;
     }
 
     private Order buildOrder(OrderDTO orderDTO, Order order){
@@ -69,6 +53,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderNumber(generateOrderNumber(order));
         order.setRegistrationDate(new Date());
         order.setStatus(Status.REGISTERED);
+        order.setInfo(orderDTO.getInfo());
 
         return order;
     }
@@ -148,14 +133,6 @@ public class OrderServiceImpl implements OrderService {
     private int generateRandomNumber(){
         Random random = new Random();
         return random.nextInt((99999 - 10000) + 1) + 10000;
-    }
-
-    public Order findOne(Integer id){
-        return orderRepository.findOne(id);
-    }
-
-    public List<Order> findAll(){
-        return orderRepository.findAll();
     }
 
     public List<Order> findAllOrders(){ return orderRepository.findAllOrders();}

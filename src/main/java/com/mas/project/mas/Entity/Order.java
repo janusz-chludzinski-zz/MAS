@@ -35,18 +35,14 @@ public class Order {
     @Column(name = "ORDER_NUMBER")
     private String orderNumber;
 
+    @Column(name = "INFO")
+    private String info;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Car car;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Client client;
-
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "ORDER_SERVICE",
-//            joinColumns = {@JoinColumn(name = "ORDER_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "SERVICE_ID")})
-//    private List<Service> services;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -125,5 +121,13 @@ public class Order {
 
     public void setServices(Set<Service> services) {
         this.services = services;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }

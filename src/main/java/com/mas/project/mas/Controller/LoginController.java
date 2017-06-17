@@ -42,7 +42,6 @@ public class LoginController {
 
     @RequestMapping(value ={"/login"}, method = RequestMethod.POST)
     public ModelAndView login() {
-        logger.debug("....login method start");
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());

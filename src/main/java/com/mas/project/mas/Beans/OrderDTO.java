@@ -39,8 +39,6 @@ public class OrderDTO {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private String prodYear;
 
-    private String extraInfo;
-
     @NotNull
     @Size(min = 2, max=30)
     private String firstName;
@@ -57,6 +55,8 @@ public class OrderDTO {
     @NotNull
     @Size(min = 2, max = 30)
     private String phone;
+
+    private String info;
 
     private List<String> serviceList;
     private String total;
@@ -104,12 +104,12 @@ public class OrderDTO {
         this.prodYear = prodYear;
     }
 
-    public String getExtraInfo() {
-        return extraInfo;
+    public String getInfo() {
+        return info;
     }
 
-    public void setExtraInfor(String extraInfor) {
-        this.extraInfo = extraInfor;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public String getFirstName() {
@@ -165,6 +165,14 @@ public class OrderDTO {
     }
 
     public void setMechanic(String mechanicEmail) {
+        this.mechanicEmail = mechanicEmail;
+    }
+
+    public String getMechanicEmail() {
+        return mechanicEmail;
+    }
+
+    public void setMechanicEmail(String mechanicEmail) {
         this.mechanicEmail = mechanicEmail;
     }
 }
