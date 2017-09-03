@@ -19,7 +19,7 @@ public class Mechanic extends Person {
     @Column(name = "SALARY")
     private String salary;
 
-//    @OneToMany(targetEntity = Order.class, mappedBy = "mechanic")
-//    private List<Order> orders;
+    @OneToMany(targetEntity = Order.class, mappedBy = "mechanic")
+    private List<Order> orders;
 
 }

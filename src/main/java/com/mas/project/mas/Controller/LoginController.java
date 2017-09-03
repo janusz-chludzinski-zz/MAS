@@ -44,6 +44,7 @@ public class LoginController {
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        auth.getCredentials();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("user", user);
         modelAndView.setViewName("home");
